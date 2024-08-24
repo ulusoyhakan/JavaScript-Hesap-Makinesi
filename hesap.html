@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Hesap Makinesi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .operators-color {
+            color: blueviolet;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center mt-5">
+            <div class="col-sm-8 col-md-3">
+                <form action="" class="row border border-dark rounded gy-3 bg-light px-1 justify-content-around">
+                    <div class="col-sm-12" id="result">
+                        <div class="mb-2">
+                            <div class="vr"></div>
+
+                            <span id="header" class="text-warning"></span>
+                        </div>
+                        <div class="mb-1">
+                            <input type="text" class="form-control fw-bold fs-5" id="inputArea" value="0">
+                        </div>
+                    </div>
+                    <!-- Operatör Başlangıç -->
+                    <button type="button" class="col-3 col-sm-3 col-md-2 border btn btn-light" onclick="Topla()"
+                        id="toplama">
+                        <i class="fa-solid fa-plus fa-lg operators-color"></i>
+                    </button>
+                    <button type="button" class="col-3 col-sm-3 col-md-2 border btn btn-light" onclick="Cikart()"
+                        id="cikartma">
+                        <i class="fa-solid fa-minus fa-lg operators-color"></i>
+                    </button>
+                    <button type="button" class="col-3 col-sm-3 col-md-2 border btn btn-light" onclick="Carp()"
+                        id="carpim">
+                        <i class="fa-solid fa-xmark fa-lg operators-color"></i>
+                    </button>
+                    <button type="button" class="col-3 col-sm-3 col-md-2 border btn btn-light" onclick="Bol()"
+                        id="bolme" value="÷">
+                        <i class="fa-solid fa-divide fa-lg operators-color"></i>
+                    </button>
+                    <!-- Operatör Bitiş -->
+                    <!-- Rakam Başlangıç -->
+                    <div class="col-md-12 mt-2">
+                        <!-- Rakam 1. Bölüm -->
+                        <div class="row text-center text-white">
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="dokuz" value="9">
+                                <i class="fa-solid fa-9"></i>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="sekiz" value="8">
+                                <i class="fa-solid fa-8"></i>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="yedi" value="7">
+                                <i class="fa-solid fa-7"></i>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="alti" value="6">
+                                <i class="fa-solid fa-6"></i>
+                            </button>
+                        </div>
+                        <!-- Rakam 2. Bölüm -->
+                        <div class="row mt-2">
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="iki" value="2">
+                                <i class="fa-solid fa-2"></i>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="uc" value="3">
+                                <i class="fa-solid fa-3"></i>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="dort" value="4">
+                                <i class="fa-solid fa-4"></i>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="bes" value="5">
+                                <i class="fa-solid fa-5"></i>
+                            </button>
+                        </div>
+                        <!-- Rakam 3. Bölüm -->
+                        <div class="row justify-content-around text-center  mt-2">
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="bir" value="1">
+                                <i class="fa-solid fa-1"></i>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="sifir" value="0">
+                                <i class="fa-solid fa-0"></i>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-light"
+                                onclick="Yaz(this)" id="nokta" value=".">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-dot" viewBox="0 0 16 16">
+                                    <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                                </svg>
+                            </button>
+                            <button type="button" class="col-3 col-sm-3 col-md-3 border btn btn-danger"
+                                onclick="Temizle()" id="temizle">
+                                <i class="fa-solid fa-a"></i>
+                                <i class="fa-solid fa-c"></i>
+                            </button>
+                            <button type="button" class="col-md-4 border my-2 rounded btn btn-light" onclick="Sonuc()"
+                                id="sonuc">
+                                <i class="fa-solid fa-equals"></i>
+                            </button>
+                            <button type="button" class="col-md-4 border  my-2 rounded btn btn-light" onclick="Sil()"
+                                id="sil">
+                                <i class="fa-solid fa-delete-left"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="hesap.js"></script>
+</body>
+
+</html>
